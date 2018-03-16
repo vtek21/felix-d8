@@ -27,8 +27,8 @@ class DefaultController extends ControllerBase {
       ->execute();
     while ($region = $regions->fetchObject()) {
       $operations = [
-        Link::fromTextAndUrl(t('Edit'), Url::fromRoute('felix_ui.region_form', ['region' => $region->name])),
-        Link::fromTextAndUrl(t('Delete'), Url::fromRoute('felix_ui.region_delete_form', ['region' => $region->name])),
+        Link::fromTextAndUrl(t('Edit'), Url::fromRoute('felix_ui.region_form', ['region' => $region->name]))->toString(),
+        Link::fromTextAndUrl(t('Delete'), Url::fromRoute('felix_ui.delete_region_form', ['region' => $region->name]))->toString(),
       ];
       $rows[] = [
         Html::escape($region->title),

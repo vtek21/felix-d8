@@ -39,7 +39,7 @@ class FelixUiRegionForm extends FormBase {
         ->fetchObject();
       if (!$region) {
         drupal_not_found();
-        module_invoke_all('exit');
+        Drupal::moduleHandler()->invokeAll('exit');
         exit;
       }
 
@@ -108,7 +108,12 @@ class FelixUiRegionForm extends FormBase {
         return $form;
       }
 
-      $contexts = context_context_list();
+      $contextItems = \Drupal::entityTypeManager()->getStorage('context')->loadMultiple();
+      $contexts = [];
+      foreach($contextItems as $context) {
+        $contexts[$context->get('name')] = $context->get('name');
+      }
+
       if (!$contexts) {
         $form['info'] = [
           '#markup' => '<p>' . t('You have to <a href="@url">create a context</a> before you can create a new region.', [
@@ -184,7 +189,7 @@ class FelixUiRegionForm extends FormBase {
         '#description' => t('This setting allows you to stick blocks to pages matching specified criteria. For example, if you choose nodetype, all article pages will have the same blocks, but blog pages will have different blocks.'),
         '#collapsible' => FALSE,
       ];
-      $options = module_invoke_all('felix_hash_options');
+      $options = \Drupal::moduleHandler()->invokeAll('felix_hash_options');
       foreach ($options as $name => $description) {
         $form['hash'][$name] = [
           '#prefix' => '<div class="felix-ui-hash">',
@@ -196,7 +201,7 @@ class FelixUiRegionForm extends FormBase {
           '#default_value' => $region && in_array($name, $region->data['hash']),
         ];
         $values = $region && !empty($region->data['hash_config'][$name]) ? $region->data['hash_config'][$name] : [];
-        $config = module_invoke_all('felix_hash_config', $name, $values);
+        $config = \Drupal::moduleHandler()->invokeAll('felix_hash_config', ['name' => $name, 'values' => $values]);
         if ($config) {
           $form['hash'][$name]['config'] = $config;
           $form['hash'][$name]['config']['#prefix'] = '<div class="felix-ui-hash-config">';
@@ -204,9 +209,7 @@ class FelixUiRegionForm extends FormBase {
         }
       }
 
-      $form['#attached']['js'] = [
-        drupal_get_path('module', 'felix_ui') . '/felix_ui.js'
-        ];
+      $form['#attached']['library'][] = 'felix_ui/felix_ui';
 
       $form['submit'] = [
         '#type' => 'submit',
@@ -238,6 +241,8 @@ class FelixUiRegionForm extends FormBase {
     $region->context = $values['context'];
     $region->block_set = $values['block_set'];
 
+//    dump((array)$region); exit;
+
     $data = empty($form['#felix_region']) ? [] : $form['#felix_region']->data;
     $data['hash'] = [];
     $data['hash_config'] = [];
@@ -266,10 +271,11 @@ class FelixUiRegionForm extends FormBase {
 
     if ($rehash) {
       if ($form_state->get(['clicked_button', '#value']) == t('Save and rehash')) {
+        \Drupal::database()->merge('felix_region')
+          ->key(['name' => $region->name])
+          ->fields((array)$region)
+          ->execute();
         // Save region and start batch to rehash blocks.
-        drupal_write_record('felix_region', $region, empty($form['#felix_region']) ? [] : [
-          'name'
-          ]);
         module_load_include('inc', 'felix', 'felix.rehash');
         felix_batch_rehash_start($region, $added, $removed, isset($values['parts']) ? $values['parts'] : []);
       }
@@ -285,13 +291,15 @@ class FelixUiRegionForm extends FormBase {
       }
     }
     else {
-      drupal_write_record('felix_region', $region, empty($form['#felix_region']) ? [] : [
-        'name'
-        ]);
+
+      \Drupal::database()->merge('felix_region')
+        ->key('name')
+        ->fields((array)$region)
+        ->execute();
+
       drupal_set_message(t('The region has been saved succesfully.'));
       $form_state->set(['redirect'], 'admin/structure/felix');
     }
   }
 
 }
-?>
