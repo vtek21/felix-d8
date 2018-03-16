@@ -1,0 +1,7 @@
+name: 'Felix Block Manager'
+description: 'Contextual Aware eXpandable way of placing blocks'
+core: 8.x
+package: Felix
+dependencies:
+  - context
+type: module

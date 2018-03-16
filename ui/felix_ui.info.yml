@@ -1,0 +1,7 @@
+name: 'Felix UI'
+description: 'User interface to administer Felix'
+core: 8.x
+package: Felix
+dependencies:
+  - felix
+type: module

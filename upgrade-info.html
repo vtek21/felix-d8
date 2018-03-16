@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600italic,400,700,600' rel='stylesheet' type='text/css' />
+    <style type="text/css">
+    <!--
+
+body {
+  width: 80%;
+  color: #343434;
+  margin: 1em auto;
+  font-family: 'Open Sans', Verdana, sans-serif;
+}
+
+details {
+  font-size: 18px;
+  line-height: 25px;
+  margin-bottom: 2em;
+  display: block;
+}
+
+details summary {
+  padding: 1em;
+  margin-bottom: 1em;
+  display: block;
+}
+
+details.error summary {
+  background-color: #ffd5d5;
+}
+
+details.warning summary {
+  background-color: #fff3bb;
+}
+
+a {
+  color: #095cb1;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+aside {
+  font-style: italic;
+  line-height: 20px;
+  font-size: 15px;
+}
+
+.group {
+  border: 1px solid #ececec;
+  padding: 1em;
+  display: block;
+}
+
+.group > summary {
+  padding: 0;
+  color: #c8c8c8;
+  margin-bottom: 0;;
+  font-weight: bold;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.group[open] > summary {
+  margin-bottom: 1em;
+}
+
+.group > details:last-child {
+  margin-bottom: 0;
+}
+
+    -->
+    </style>
+  </head>
+  <body>
+      <details open="true" class="group">
+      <summary></summary>
+          <details class="error">
+      <summary><code>drupal_add_js()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2169605"><code>drupal_add_css()</code>, <code>drupal_add_js()</code> and <code>drupal_add_library()</code> removed in favor of <code>#attached</code></a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2408597"><code>AssetResolverInterface</code> and <code>AttachedAssetsInterface</code> replace internal Asset API functions</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 258</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 259</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_add_js</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_add_library()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2169605"><code>drupal_add_css()</code>, <code>drupal_add_js()</code> and <code>drupal_add_library()</code> removed in favor of <code>#attached</code></a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2408597"><code>AssetResolverInterface</code> and <code>AttachedAssetsInterface</code> replace internal Asset API functions</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 250</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 257</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_add_library</aside>    </details>
+    <details class="error">
+      <summary>The caching system has been rewritten.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1884796">Drupal 8 Cache API</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/1272696">New cache API</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 750</li>
+            </ul>
+                  <aside>Flagged by _function_call:cache_clear_all</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_exit()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2017339"><code>drupal_exit()</code> removed</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 227</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_exit</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_goto()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2023537"><code>drupal_goto()</code> removed</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.rehash.inc, line 116</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 365</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 562</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 577</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 670</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 727</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_goto</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_is_cli()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2295037"><code>drupal_is_cli()</code> removed</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.rehash.inc, line 115</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_is_cli</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_map_assoc()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2207453"><code>drupal_map_assoc()</code> removed</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 605</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_map_assoc</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_render()</code> has been removed.</summary>
+
+      
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 127</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 180</li>
+              <li>modules/contrib/felix/templates/felix-node.tpl.php, line 23</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_render</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_write_record()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2340291"><code>drupal_write_record()</code> removed</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 360</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 665</li>
+              <li>modules/contrib/felix/felix.export.inc, line 98</li>
+              <li>modules/contrib/felix/felix.export.inc, line 102</li>
+              <li>modules/contrib/felix/felix.export.inc, line 107</li>
+              <li>modules/contrib/felix/felix.export.inc, line 112</li>
+              <li>modules/contrib/felix/felix.export.inc, line 166</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_write_record</aside>    </details>
+    <details class="error">
+      <summary><code>entity_get_info()</code> is now a method of the EntityManager service.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1929006"><code>entity_get_info()</code> is deprecated</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 88</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 734</li>
+            </ul>
+                  <aside>Flagged by _function_call:entity_get_info</aside>    </details>
+    <details class="error">
+      <summary><code>node_load()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2266845">Entities are now classed objects implementing <code>EntityInterface</code></a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 686</li>
+              <li>modules/contrib/felix/felix.module, line 342</li>
+              <li>modules/contrib/felix/felix.module, line 567</li>
+            </ul>
+                  <aside>Flagged by _function_call:node_load</aside>    </details>
+    <details class="error">
+      <summary><code>node_delete()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2266845">Entities are now classed objects implementing <code>EntityInterface</code></a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 721</li>
+            </ul>
+                  <aside>Flagged by _function_call:node_delete</aside>    </details>
+    <details class="error">
+      <summary><code>field_update_instance()</code> is now <code>FieldConfig::save()</code>.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2012896">Field CRUD API replaced by Entity API</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.install, line 525</li>
+            </ul>
+                  <aside>Flagged by _function_call:field_update_instance</aside>    </details>
+    <details class="error">
+      <summary><code>drupal_get_form()</code> has moved into the FormBuilder service.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2121003">Form generation functions moved into FormBuilder service</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 60</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 126</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 527</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 532</li>
+            </ul>
+                  <aside>Flagged by _function_call:drupal_get_form</aside>    </details>
+    <details class="error">
+      <summary><code>form_set_error()</code> is now a method of <code>FormStateInterface</code>.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2121003">Form functions moved into <code>FormStateInterface</code></a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 279</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 288</li>
+            </ul>
+                  <aside>Flagged by _function_call:form_set_error</aside>    </details>
+    <details class="error">
+      <summary><code>format_plural()</code> was moved into the translation service.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2173787"><code>format_plural()</code> moved to translation service</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.rehash.inc, line 113</li>
+            </ul>
+                  <aside>Flagged by _function_call:format_plural</aside>    </details>
+    <details class="error">
+      <summary><code>l()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2346779"><code>l()</code> replaced by URL generation API</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 159</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 320</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 700</li>
+            </ul>
+                  <aside>Flagged by _function_call:l</aside>    </details>
+    <details class="error">
+      <summary><code>module_invoke()</code> is now a method of the <code>module_handler</code> service.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1894902"><code>module_invoke()</code> replaced by <code>module_handler</code> service</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 309</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 411</li>
+              <li>modules/contrib/felix/felix.module, line 159</li>
+              <li>modules/contrib/felix/felix.module, line 368</li>
+              <li>modules/contrib/felix/felix.module, line 625</li>
+              <li>modules/contrib/felix/felix.module, line 632</li>
+              <li>modules/contrib/felix/felix.api.php, line 138</li>
+              <li>modules/contrib/felix/felix.api.php, line 155</li>
+              <li>modules/contrib/felix/felix.features.inc, line 63</li>
+              <li>modules/contrib/felix/felix.features.inc, line 76</li>
+              <li>modules/contrib/felix/felix.features.inc, line 135</li>
+              <li>modules/contrib/felix/felix.features.inc, line 148</li>
+            </ul>
+                  <aside>Flagged by _function_call:module_invoke</aside>    </details>
+    <details class="error">
+      <summary><code>module_invoke_all()</code> is now a method of the <code>module_handler</code> service.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1894902"><code>module_invoke_all()</code> replaced by <code>module_handler</code> service</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 53</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 612</li>
+              <li>modules/contrib/felix/felix.pages.inc, line 652</li>
+            </ul>
+                  <aside>Flagged by _function_call:module_invoke_all</aside>    </details>
+    <details class="error">
+      <summary><code>get_t()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2021435"><code>get_t()</code> replaced by <code>t()</code></a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.install, line 468</li>
+            </ul>
+                  <aside>Flagged by _function_call:get_t</aside>    </details>
+    <details class="error">
+      <summary><code>theme()</code> has been renamed to <code>_theme()</code>, and should never be called directly.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2195739"><code>theme()</code> renamed to <code>_theme()</code> and should not be called directly</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 444</li>
+              <li>modules/contrib/felix/felix.install, line 497</li>
+              <li>modules/contrib/felix/felix.module, line 354</li>
+            </ul>
+                  <aside>Flagged by _function_call:theme</aside>    </details>
+    <details class="error">
+      <summary><code>url()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2346779"><code>url()</code> replaced by URL generation API</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.pages.inc, line 750</li>
+            </ul>
+                  <aside>Flagged by _function_call:url</aside>    </details>
+    <details class="error">
+      <summary><code>user_access()</code> is now <code>AccountInterface::hasPermission()</code>.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2049309"><code>user_access()</code> got converted to a method on the user/account interface</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.module, line 138</li>
+              <li>modules/contrib/felix/felix_reaction_block.inc, line 53</li>
+            </ul>
+                  <aside>Flagged by _function_call:user_access</aside>    </details>
+    <details class="error">
+      <summary><code>watchdog()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2270941"><code>watchdog()</code> is deprecated</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.module, line 682</li>
+            </ul>
+                  <aside>Flagged by _function_call:watchdog</aside>    </details>
+    <details class="warning">
+      <summary>Many common functions, shared variables, and constants have been renamed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2324935">The global theme variables have been replaced by an ActiveTheme object</a></li>
+              </ul>
+      
+                      </details>
+    <details class="error">
+      <summary>Classes must be PSR-4 compliant.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2246699">PSR-4 compatible class loader in Drupal core</a></li>
+              </ul>
+      
+                      </details>
+    <details class="error">
+      <summary>Automated web tests must be in a PSR-4 namespace, and unit tests must be converted to PHPUnit.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1543796">Namespacing of automated tests has changed</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2301125"><code>getInfo()</code> in test classes replaced by doc comments</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/1710766">Test classes should define a <code>$modules</code> property declaring dependencies</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/1911318">SimpleTest tests now use empty &quot;testing&quot; profile by default</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/1829160">New <code>KernelTestBase</code> class for API-level integration tests</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2012184">PHPUnit added to Drupal core</a></li>
+              </ul>
+      
+                      </details>
+    <details class="error">
+      <summary><code>hook_init()</code> has been removed.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2013014"><code>hook_init()</code> removed</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.module, line 193</li>
+            </ul>
+                  <aside>Flagged by _flag_hook:init</aside>    </details>
+    <details class="error">
+      <summary><code>hook_menu()</code> has been removed from Drupal 8.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1800686">All functionality of <code>hook_menu()</code> replaced</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2177901">Dynamic routes are now defined in <code>MODULE.routing.yml</code></a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2119699">Page callbacks have been converted to controller classes</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2089605">Route naming convention</a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2165243">Contextual links are now plugins defined in <code>MODULE.links.contextual.yml</code></a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2007444">Local actions are now plugins defined in <code>MODULE.links.action.yml</code></a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2044515">Local tasks and now plugins defined in <code>MODULE.links.task.yml</code></a></li>
+                <li><a target="_blank" href="https://www.drupal.org/node/2228089">Menu links are now defined in <code>MODULE.links.menu.yml</code></a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.module, line 25</li>
+            </ul>
+                  <aside>Flagged by _flag_hook:menu</aside>    </details>
+    <details class="warning">
+      <summary>Static permissions are now defined in <code>MODULE.permissions.yml</code>.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/2311427">Defining permissions in <code>MODULE.permissions.yml</code></a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.module, line 13</li>
+            </ul>
+            <p class="fixable">This issue can be fixed automatically.</p>      <aside>Flagged by hook_permission</aside>    </details>
+    <details class="error">
+      <summary>Module info files' <code>core</code> key must have a value of <code>8.x</code>.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1935708"><code>.info</code> files are now <code>.info.yml</code> files</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.info</li>
+            </ul>
+                  <aside>Flagged by info</aside>    </details>
+    <details class="error">
+      <summary>Info files must contain a <code>type</code> key.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1935708#type"><code>.info</code> files are now <code>.info.yml</code> files</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.info</li>
+            </ul>
+                  <aside>Flagged by info</aside>    </details>
+    <details class="error">
+      <summary>Many common dependencies have moved into core.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1935708"><code>.info</code> files are now <code>.info.yml</code> files</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.info</li>
+            </ul>
+                  <aside>Flagged by info</aside>    </details>
+    <details class="error">
+      <summary>Modules no longer declare classes in their info file.</summary>
+
+      
+            <h5>Documentation</h5>
+      <ul>
+                <li><a target="_blank" href="https://www.drupal.org/node/1935708#files"><code>.info</code> files are now <code>.info.yml</code> files</a></li>
+              </ul>
+      
+            <h5>Files Affected</h5>
+      <ul>
+              <li>modules/contrib/felix/felix.info</li>
+            </ul>
+                  <aside>Flagged by info</aside>    </details>
+
+    </details>
+    </body>
+</html>

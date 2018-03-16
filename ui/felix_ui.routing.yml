@@ -1,0 +1,58 @@
+felix_ui.regions_page:
+  path: /admin/structure/felix/regions/list
+  defaults:
+    _title: List
+    _controller: '\Drupal\felix_ui\Controller\DefaultController::felix_ui_regions_page'
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.create_region_form:
+  path: '/admin/structure/felix/regions/add'
+  defaults:
+    _title: 'Add region'
+    _form: \Drupal\felix_ui\Form\FelixUiRegionForm
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.region_form:
+  path: '/admin/structure/felix/regions/{region}/edit'
+  defaults:
+    region: 'foo'
+    _title: 'Edit region'
+    _form: \Drupal\felix_ui\Form\FelixUiRegionForm
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.delete_region_form:
+  path: '/admin/structure/felix/regions/{region}/delete'
+  defaults:
+    _title: 'Delete region'
+    _form: \Drupal\felix_ui\Form\FelixUiDeleteRegionForm
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.sets_page:
+  path: /admin/structure/felix/sets/list
+  defaults:
+    _title: List
+    _controller: '\Drupal\felix_ui\Controller\DefaultController::felix_ui_sets_page'
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.create_set_form:
+  path: '/admin/structure/felix/sets/add'
+  defaults:
+    _title: 'Add block set'
+    _form: \Drupal\felix_ui\Form\FelixUiSetForm
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.set_form:
+  path: '/admin/structure/felix/sets/{set}/edit'
+  defaults:
+    set: 'foo'
+    _title: 'Edit block set'
+    _form: \Drupal\felix_ui\Form\FelixUiSetForm
+  requirements:
+    _permission: 'administer site configuration'
+felix_ui.delete_set_form:
+  path: '/admin/structure/felix/sets/{set}/delete'
+  defaults:
+    _title: 'Delete block set'
+    _form: \Drupal\felix_ui\Form\FelixUiDeleteSetForm
+  requirements:
+    _permission: 'administer site configuration'

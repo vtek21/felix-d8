@@ -1,0 +1,4 @@
+felix_ui.regions_page:
+  route_name: felix_ui.regions_page
+  title: 'Felix blocks manager'
+  description: 'Manage felix block sets and regions.'

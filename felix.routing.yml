@@ -1,0 +1,74 @@
+felix.add_block_page:
+  path: /felix-blocks/add
+  defaults:
+    op: add
+    _title: 'Add block'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_add_block_page'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.block_action_move-up:
+  path: /felix-blocks/move-up
+  defaults:
+    op: move
+    action: move-up
+    _title: 'Move up'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_block_action'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.block_action_move-down:
+  path: /felix-blocks/move-down
+  defaults:
+    op: move
+    action: move-down
+    _title: 'Move down'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_block_action'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.block_action_attributes:
+  path: /felix-blocks/attributes
+  defaults:
+    op: edit
+    action: attributes
+    _title: 'Edit attributes'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_block_action'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.block_action_hide:
+  path: /felix-blocks/hide
+  defaults:
+    op: delete
+    action: hide
+    _title: 'Hide block on this page'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_block_action'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.block_action_show:
+  path: /felix-blocks/show
+  defaults:
+    op: delete
+    action: show
+    _title: 'Hide block on this page'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_block_action'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.block_action_remove:
+  path: /felix-blocks/remove
+  defaults:
+    op: delete
+    action: remove
+    _title: 'Remove block'
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_block_action'
+  requirements:
+    _custom_access: '\Drupal\felix\Controller\DefaultController::felix_block_access'
+felix.autocomplete_node:
+  path: '/felix-blocks/autocomplete-node/{nodetype}'
+  defaults:
+    _controller: '\Drupal\felix\Controller\DefaultController::felix_autocomplete_node'
+  requirements:
+    _permission: 'manage felix blocks'
+felix.autocomplete:
+  path: '/felix/autocomplete/{type}'
+  defaults:
+    _controller: '\Drupal\felix\Controller\DefaultController::_felix_autocomplete'
+  requirements:
+    _permission: 'access content'

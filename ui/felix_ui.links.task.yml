@@ -1,0 +1,30 @@
+felix_ui.regions_page:
+  route_name: felix_ui.regions_page
+  title: Regions
+  weight: 1
+  base_route: felix_ui.regions_page
+felix_ui.regions_page_0:
+  route_name: felix_ui.regions_page
+  title: List
+  weight: 1
+  parent_id: felix_ui.regions_page
+felix_ui.region_form:
+  route_name: felix_ui.create_region_form
+  title: 'Add region'
+  weight: 2
+  parent_id: felix_ui.regions_page
+felix_ui.sets_page:
+  route_name: felix_ui.sets_page
+  title: 'Block sets'
+  weight: 2
+  base_route: felix_ui.regions_page
+felix_ui.sets_page_0:
+  route_name: felix_ui.sets_page
+  title: List
+  weight: 1
+  parent_id: felix_ui.sets_page
+felix_ui.set_form:
+  route_name: felix_ui.create_set_form
+  title: 'Add block set'
+  weight: 2
+  parent_id: felix_ui.sets_page
