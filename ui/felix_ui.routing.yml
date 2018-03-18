@@ -15,7 +15,6 @@ felix_ui.create_region_form:
 felix_ui.region_form:
   path: '/admin/structure/felix/regions/{region}/edit'
   defaults:
-    region: 'foo'
     _title: 'Edit region'
     _form: \Drupal\felix_ui\Form\FelixUiRegionForm
   requirements:
@@ -44,7 +43,6 @@ felix_ui.create_set_form:
 felix_ui.set_form:
   path: '/admin/structure/felix/sets/{set}/edit'
   defaults:
-    set: 'foo'
     _title: 'Edit block set'
     _form: \Drupal\felix_ui\Form\FelixUiSetForm
   requirements:

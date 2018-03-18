@@ -5,16 +5,20 @@
 
 namespace Drupal\felix\Controller;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Language\Language;
+use Drupal\Core\Session\AccountInterface;
+use Zend\Diactoros\Response\JsonResponse;
 
 /**
  * Default controller for the felix module.
  */
 class DefaultController extends ControllerBase {
 
-  public function felix_block_access($op = 'add', $region = NULL, $block = NULL, Drupal\Core\Session\AccountInterface $account) {
+  public function felix_block_access($op = 'add', $region = NULL, $block = NULL, AccountInterface $account) {
     $user = \Drupal::currentUser();
-    if (!user_access('manage felix blocks')) {
+    if (!$user->hasPermission('manage felix blocks')) {
       return FALSE;
     }
     if ($user->uid == 1) {
@@ -26,14 +30,14 @@ class DefaultController extends ControllerBase {
     if (empty($block) && !empty($_GET['region']) && !empty($_GET['module']) && !empty($_GET['delta']) && !empty($_GET['hash'])) {
       $block = db_select('felix_block', 'cb')
         ->fields('cb', [
-        'fbid',
-        'region',
-        'weight',
-        'hash',
-        'module',
-        'delta',
-        'data',
-      ])
+          'fbid',
+          'region',
+          'weight',
+          'hash',
+          'module',
+          'delta',
+          'data',
+        ])
         ->condition('cb.region', $_GET['region'])
         ->condition('cb.module', $_GET['module'])
         ->condition('cb.delta', $_GET['delta'])
@@ -42,8 +46,10 @@ class DefaultController extends ControllerBase {
         ->fetchObject();
     }
     $allow = TRUE;
-    foreach (\Drupal::moduleHandler()->getImplementations('felix_access') as $module) {
-      switch (module_invoke($module, 'felix_access', $op, $block)) {
+    foreach (\Drupal::moduleHandler()
+               ->getImplementations('felix_access') as $module) {
+      switch (\Drupal::moduleHandler()
+        ->invoke($module, 'felix_access', ['op' => $op, 'block' => $block])) {
         case FELIX_ALLOW:
           // Do nothing.
           break;
@@ -104,7 +110,8 @@ class DefaultController extends ControllerBase {
         $block->module = $_GET['module'];
         $block->delta = $_GET['delta'];
         $block->data = [];
-        return \Drupal::formBuilder()->getForm('felix_attributes_form', $region, $block, $_GET['path']);
+        return \Drupal::formBuilder()
+          ->getForm('felix_attributes_form', $region, $block, $_GET['path']);
       }
       else {
         return _felix_add_block($region, $_GET['path'], $_GET['module'], $_GET['delta']);
@@ -157,12 +164,14 @@ class DefaultController extends ControllerBase {
       case 'move-down':
         return _felix_block_action_move($action, $block, $_GET['path']);
       case 'attributes':
-        return \Drupal::formBuilder()->getForm('felix_attributes_form', $region, $block, $_GET['path']);
+        return \Drupal::formBuilder()
+          ->getForm('felix_attributes_form', $region, $block, $_GET['path']);
       case 'hide':
       case 'show':
         return _felix_block_action_hide($action, $block, $_GET['path']);
       case 'remove':
-        return \Drupal::formBuilder()->getForm('felix_remove_form', $region, $block, $_GET['path']);
+        return \Drupal::formBuilder()
+          ->getForm('felix_remove_form', $region, $block, $_GET['path']);
     }
   }
 
@@ -170,7 +179,7 @@ class DefaultController extends ControllerBase {
     $language = \Drupal::languageManager()->getCurrentLanguage();
     $matches = [];
     $language_condition = db_or()
-      ->condition('n.language', \Drupal\Core\Language\Language::LANGCODE_NOT_SPECIFIED)
+      ->condition('n.language', Language::LANGCODE_NOT_SPECIFIED)
       ->condition('n.language', $language->language);
     $nodes = db_select('node', 'n')
       ->fields('n', ['nid', 'title'])
@@ -183,9 +192,9 @@ class DefaultController extends ControllerBase {
       ->execute()
       ->fetchAll();
     foreach ($nodes as $node) {
-      $matches["{$node->title} (#{$node->nid})"] = \Drupal\Component\Utility\Html::escape($node->title);
+      $matches["{$node->title} (#{$node->nid})"] = Html::escape($node->title);
     }
-    drupal_json_output($matches);
+    return new JsonResponse($matches);
   }
 
   public function _felix_autocomplete($type) {
@@ -204,11 +213,11 @@ class DefaultController extends ControllerBase {
     foreach ($nodes as $node) {
       $results[] = [
         'nid' => $node->nid,
-        'title' => \Drupal\Component\Utility\Html::escape($node->title),
+        'title' => Html::escape($node->title),
         'value' => $node->title . ' (#' . $node->nid . ')',
         'description' => t('Last modified: @date', [
-          '@date' => format_date($node->changed)
-          ]),
+          '@date' => format_date($node->changed),
+        ]),
         'addClass' => NULL,
       ];
     }
@@ -222,12 +231,11 @@ class DefaultController extends ControllerBase {
           'title' => t('No results'),
           'addClass' => 'status-notice',
           'disabled' => TRUE,
-        ]
-        ];
+        ],
+      ];
     }
 
-    drupal_json_output($results);
-    drupal_exit();
+    return new JsonResponse($results);
   }
 
 }

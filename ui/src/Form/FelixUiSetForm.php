@@ -10,7 +10,7 @@ namespace Drupal\felix_ui\Form;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class FelixUiSetForm extends FormBase {
 
@@ -29,9 +29,7 @@ class FelixUiSetForm extends FormBase {
         ->execute()
         ->fetchObject();
       if (!$set) {
-        drupal_not_found();
-        module_invoke_all('exit');
-        exit;
+        throw new NotFoundHttpException();
       }
 
       $res = db_select('felix_block_set_block', 'cbsb')
@@ -98,7 +96,7 @@ class FelixUiSetForm extends FormBase {
       }
 
       $options = ['*' => '<em>' . t('All') . '</em>'];
-      $blocks = module_invoke($module, 'block_info');
+      $blocks = \Drupal::moduleHandler()->invoke($module, 'block_info');
       foreach ($blocks as $delta => $block) {
         $options[$delta] = $block['info'];
       }
@@ -107,7 +105,7 @@ class FelixUiSetForm extends FormBase {
         '#type' => 'checkboxes',
         '#title' => Html::escape($name),
         '#options' => $options,
-        '#default_value' => empty($set) || empty($set->blocks[$module]) ? [] : drupal_map_assoc($set->blocks[$module]),
+        '#default_value' => empty($set) || empty($set->blocks[$module]) ? [] : array_combine($set->blocks[$module], $set->blocks[$module]),
       ];
     }
 
@@ -124,7 +122,7 @@ class FelixUiSetForm extends FormBase {
       '#type' => 'checkboxes',
       '#title' => t('Node types'),
       '#options' => $options,
-      '#default_value' => empty($set) ? [] : drupal_map_assoc($set->nodetypes),
+      '#default_value' => empty($set) ? [] : array_combine($set->nodetypes, $set->nodetypes),
       '#description' => t('Check the nodetypes which can be used in this set.'),
     ];
 
@@ -140,7 +138,7 @@ class FelixUiSetForm extends FormBase {
       '#title' => t('View modes'),
       '#default_value' => empty($set) ? [
         'felix' => 'felix'
-        ] : drupal_map_assoc($set->viewmodes),
+        ] : array_combine($set->viewmodes, $set->viewmodes),
       '#description' => t('Check the view modes which can be used in this set.'),
     ];
 
@@ -152,7 +150,7 @@ class FelixUiSetForm extends FormBase {
     return $form;
   }
 
-  public function validateForm(array &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  public function validateForm(array &$form, FormStateInterface $form_state) {
     // If you have selected 1+ content types, you should also have enabled at least one view mode.
     $content_types_selected = array_filter($form_state->getValue([
       'nodetypes'
@@ -163,14 +161,10 @@ class FelixUiSetForm extends FormBase {
     }
   }
 
-  public function submitForm(array &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     $set = new \stdClass();
     $set->name = $form_state->getValue(['name']);
     $set->title = $form_state->getValue(['title']);
-
-//    drupal_write_record('felix_block_set', $set, empty($form['#felix_set']) ? [] : [
-//      'name'
-//      ]);
 
     \Drupal::database()->merge('felix_block_set')
       ->key(['name' =>$form_state->getValue(['name'])])

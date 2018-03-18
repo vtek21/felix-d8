@@ -4,6 +4,9 @@
  * Install and update functions for the Felix module.
  */
 
+use Drupal\Core\Entity\Entity\EntityViewMode;
+use Drupal\field\Entity\FieldConfig;
+
 /**
  * Implements hook_schema().
  */
@@ -523,7 +526,8 @@ function felix_configure_view_mode() {
     $settings['view_modes']['felix'] = array('custom_settings' => TRUE);
     field_bundle_settings('node', $row->nodetype, $settings);
 
-    $instance = field_info_instance('node', 'body', $row->nodetype);
+    $instance = FieldConfig::loadByName('node', $row->nodeType, 'body');
+//    $instance = field_info_instance('node', 'body', $row->nodetype);
 
     if (isset($instance, $instance['display'])) {
       $instance['display']['felix'] = array(

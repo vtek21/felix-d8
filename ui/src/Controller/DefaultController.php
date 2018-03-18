@@ -1,4 +1,6 @@
-<?php /**
+<?php
+
+/**
  * @file
  * Contains \Drupal\felix_ui\Controller\DefaultController.
  */
@@ -7,7 +9,6 @@ namespace Drupal\felix_ui\Controller;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
 
 
@@ -26,22 +27,33 @@ class DefaultController extends ControllerBase {
       ->orderBy('title')
       ->execute();
     while ($region = $regions->fetchObject()) {
+      $link['edit'] = [
+        'title' => t('Edit'),
+        'url' => Url::fromRoute('felix_ui.region_form', ['region' => $region->name])
+      ];
+      $link['delete'] = [
+        'title' => t('Delete'),
+        'url' => Url::fromRoute('felix_ui.delete_region_form', ['region' => $region->name])
+      ];
       $operations = [
-        Link::fromTextAndUrl(t('Edit'), Url::fromRoute('felix_ui.region_form', ['region' => $region->name]))->toString(),
-        Link::fromTextAndUrl(t('Delete'), Url::fromRoute('felix_ui.delete_region_form', ['region' => $region->name]))->toString(),
+        'data' => [
+          '#type' => 'operations',
+          '#links' => $link
+        ]
       ];
       $rows[] = [
         Html::escape($region->title),
         Html::escape($region->context),
         Html::escape($region->region),
-        implode(' ', $operations),
+        $operations,
       ];
     }
 
     if (!$rows) {
       return ['#markup' => t('<p>There are no regions defined yet.</p>')];
     }
-    return ['#theme' => 'table', 'header' => $header, 'rows' => $rows];
+
+    return ['#theme' => 'table', '#header' => $header, '#rows' => $rows];
   }
 
   public function felix_ui_sets_page() {
@@ -54,13 +66,23 @@ class DefaultController extends ControllerBase {
       ->orderBy('title')
       ->execute();
     while ($set = $sets->fetchObject()) {
+      $link['edit'] = [
+        'title' => t('Edit'),
+        'url' => Url::fromRoute('felix_ui.set_form', ['set' => $set->name])
+      ];
+      $link['delete'] = [
+        'title' => t('Delete'),
+        'url' => Url::fromRoute('felix_ui.delete_set_form', ['set' => $set->name])
+      ];
       $operations = [
-        Link::fromTextAndUrl(t('Edit'), Url::fromRoute('felix_ui.set_form', ['set' => $set->name]))->toString(),
-        Link::fromTextAndUrl(t('Delete'), Url::fromRoute('felix_ui.delete_set_form', ['set' => $set->name]))->toString(),
+        'data' => [
+          '#type' => 'operations',
+          '#links' => $link
+        ]
       ];
       $rows[] = [
         Html::escape($set->title),
-        implode(' ', $operations),
+        $operations
       ];
     }
 
@@ -69,8 +91,8 @@ class DefaultController extends ControllerBase {
     }
     return [
       '#theme' => 'table',
-      'header' => $header,
-      'rows' => $rows,
+      '#header' => $header,
+      '#rows' => $rows,
     ];
 
   }

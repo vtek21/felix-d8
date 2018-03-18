@@ -4,6 +4,9 @@
  * Functions relating to menu callbacks for the Felix module.
  */
 
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 /**
  * Page callback for the add block page.
  */
@@ -226,8 +229,7 @@ function _felix_autocomplete($type) {
     ));
   }
 
-  drupal_json_output($results);
-  drupal_exit();
+  return new JsonResponse($results);
 }
 
 /**
@@ -774,7 +776,8 @@ function felix_remove_form_submit($form, &$form_state) {
   _felix_expire_pagecache($path);
 
   drupal_set_message(t('The block %subject has been deleted from region %region.', array('%subject' => $block->subject, '%region' => $region->title)));
-  drupal_goto($path);
+
+  return new RedirectResponse($path);
 }
 
 /**
